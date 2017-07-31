@@ -1,0 +1,13 @@
+---
+
+- when:   dest|dirname != '' and dest|dirname != '~'
+  raw:      mkdir -p {{dest|dirname}}
+
+- environment:
+    PATH:   '{{coreos_copy_env_path}}'
+  copy:
+    src:    '{{src}}'
+    dest:   '{{ "/media/root" if dest | match("/.*") else "" }}{{ dest }}'
+    owner:  '{{owner}}'
+    group:  '{{group}}'
+    mode:   '{{mode}}'

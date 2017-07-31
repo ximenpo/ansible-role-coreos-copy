@@ -1,0 +1,16 @@
+---
+
+# the src & dest for the file to be copied
+src: ~
+dest: ~
+
+# the dest file's attributes
+owner: ~
+group: ~
+mode: ~
+
+# true if the operation is running in `toolbox` container
+run_in_toolbox: no
+
+# $PATH for coreos-copy
+coreos_copy_env_path: /usr/bin:/bin:/usr/sbin:/sbin:/opt/bin

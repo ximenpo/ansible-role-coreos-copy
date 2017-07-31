@@ -1,0 +1,19 @@
+---
+
+- when:           dest|dirname != '' and dest|dirname != '~'
+  raw:            mkdir -p {{dest|dirname}}
+
+- synchronize:
+    src:          '{{src}}'
+    dest:         '{{dest}}'
+
+- when:           >
+                  src|default('') != ''
+                  and dest|default('') != ''
+                  and (mode|default('') != '' or owner|default('') != '' or group|default('') != '')
+  script:         >
+                  coreos-copy-chattr.sh
+                  {{dest or ""|quote}}
+                  {{mode or ""|quote}}
+                  {{owner or ""|quote}}
+                  {{group or ""|quote}}

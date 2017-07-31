@@ -1,0 +1,8 @@
+---
+# tasks file for coreos-copy
+
+- include:  copy-raw.yml
+  when:     not run_in_toolbox
+
+- include:  copy-within-toolbox.yml
+  when:     run_in_toolbox
