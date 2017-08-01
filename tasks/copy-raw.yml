@@ -2,6 +2,7 @@
 
 - when:           dest|dirname != '' and dest|dirname != '~'
   raw:            mkdir -p {{dest|dirname}}
+  environment:    ~
 
 - synchronize:
     src:          '{{src}}'

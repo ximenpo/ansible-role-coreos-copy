@@ -2,9 +2,15 @@
 
 - when:   dest|dirname != '' and dest|dirname != '~'
   raw:      mkdir -p {{dest|dirname}}
+  environment:    ~
+
+- vars:
+    env_parent: '{{ environment|default({}) }}'
+  set_fact:
+    env_path:   '{{ env_parent.PATH|default(coreos_copy_env_path) }}'
 
 - environment:
-    PATH:   '{{coreos_copy_env_path}}'
+    PATH:   '{{ env_path|default("") }}'
   copy:
     src:    '{{src}}'
     dest:   '{{ "/media/root" if dest | match("/.*") else "" }}{{ dest }}'
