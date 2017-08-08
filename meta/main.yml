@@ -12,3 +12,5 @@ galaxy_info:
     - name: CoreOS
       versions:
         - all
+
+allow_duplicates: true
