@@ -9,9 +9,9 @@
     dest:         '{{dest}}'
 
 - when:           >
-                  src|default('') != ''
-                  and dest|default('') != ''
-                  and (mode|default('') != '' or owner|default('') != '' or group|default('') != '')
+                  src and src != ''
+                  and dest and dest != ''
+                  and (mode and mode != '' or owner and owner != '' or group and group != '')
   script:         >
                   coreos-copy-chattr.sh
                   {{dest or ""|quote}}
