@@ -1,20 +1,20 @@
 ---
 
-- when:           dest|dirname != '' and dest|dirname != '~'
-  raw:            mkdir -p {{dest|dirname}}
+- when:   dest|dirname != '' and dest|dirname != '~'
+  raw:    mkdir -p {{dest|dirname}}
   environment:    ~
 
 - synchronize:
-    src:          '{{src}}'
-    dest:         '{{dest}}'
+    src:  '{{src}}'
+    dest: '{{dest}}'
 
-- when:           >
-                  src and src != ''
-                  and dest and dest != ''
-                  and (mode and mode != '' or owner and owner != '' or group and group != '')
-  script:         >
-                  coreos-copy-chattr.sh
-                  {{dest or ""|quote}}
-                  {{mode or ""|quote}}
-                  {{owner or ""|quote}}
-                  {{group or ""|quote}}
+- when:
+    -     src and src != ''
+    -     dest and dest != ''
+    -     mode and mode != '' or owner and owner != '' or group and group != ''
+  script: >
+    coreos-copy-chattr.sh
+    {{dest or ""|quote}}
+    {{mode or ""|quote}}
+    {{owner or ""|quote}}
+    {{group or ""|quote}}
