@@ -12,9 +12,15 @@
     -     (src)
     -     (dest)
     -     (mode) or (owner) or (group)
-  script: >
-    coreos-copy-chattr.sh
-    {{dest or ""|quote}}
-    {{mode or ""|quote}}
-    {{owner or ""|quote}}
-    {{group or ""|quote}}
+  raw:  |
+          if [[ -n "{{mode|default('')}}" ]]; then
+              chmod '{{mode}}'      {{dest|quote}}
+          fi
+
+          if [[ -n "{{owner|default('')}}" ]]; then
+              chown '{{owner}}'     {{dest|quote}}
+          fi
+
+          if [[ -n "{{group|default('')}}" ]]; then
+              chgrp '{{group}}'     {{dest|quote}}
+          fi
