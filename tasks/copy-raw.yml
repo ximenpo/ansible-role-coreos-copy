@@ -14,13 +14,13 @@
     -     (mode) or (owner) or (group)
   raw:  |
           if [[ -n "{{mode|default('')}}" ]]; then
-              chmod '{{mode}}'      {{dest|quote}}
+              chmod -R '{{mode}}'      {{dest|quote}}
           fi
 
           if [[ -n "{{owner|default('')}}" ]]; then
-              chown '{{owner}}'     {{dest|quote}}
+              chown -R '{{owner}}'     {{dest|quote}}
           fi
 
           if [[ -n "{{group|default('')}}" ]]; then
-              chgrp '{{group}}'     {{dest|quote}}
+              chgrp -R '{{group}}'     {{dest|quote}}
           fi
